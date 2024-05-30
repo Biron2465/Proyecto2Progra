@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="22px" viewBox="0 0 24 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>filled-star</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-567.000000, -477.000000)" fill="#FFBD00">
+            <g id="Group-24" transform="translate(274.000000, 177.000000)">
+                <g id="Group-35" transform="translate(197.000000, 300.000000)">
+                    <g id="Group-28">
+                        <g id="Group-26" transform="translate(9.000000, 0.000000)">
+                            <g id="Stars" transform="translate(87.000000, 0.000000)">
+                                <polygon id="filled-star" points="12 18 4.94657697 21.7082039 6.2936609 13.854102 0.587321804 8.29179607 8.47328849 7.14589803 12 0 15.5267115 7.14589803 23.4126782 8.29179607 17.7063391 13.854102 19.053423 21.7082039"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
