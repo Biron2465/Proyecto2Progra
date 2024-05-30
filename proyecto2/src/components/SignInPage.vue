@@ -5,7 +5,9 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 py-5">
                         <div class="text-center mb-4">
-                            <img src="../assets/SignInPage/Flock Logo-2.svg" alt="" class="logo">
+                            <a href="/">
+                                <img src="../assets/SignInPage/Flock Logo-2.svg" alt="" class="logo" href="/">
+                            </a>
                         </div>
                         <form @submit.prevent="login" class="bg-light p-4 rounded shadow-sm form">
                             <img src="../assets/SignInPage/quick-sign-up.png" alt="" class="imgSignIn py-2">

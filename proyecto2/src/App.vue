@@ -39,7 +39,7 @@
                 <a class="nav-link" href="#">ENTERPRISE</a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link" href="#">PRICING</a>
+                <a class="nav-link" href="/chat">PRICING</a>
               </li>
               <li class="nav-item mx-2 dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="learnmoreDropdown" role="button"
@@ -65,7 +65,88 @@
     <section v-if="showNavAndFooter" class="section16 py-5 text-center">
       <div class="container">
         <div class="row">
-          <!-- Footer content -->
+          <div class="col-md-1">
+            <ul class="list-unstyled">
+              <li>
+                <h6 class="mb-3">Product</h6>
+                <a href="#">Features</a><br>
+                <a href="#">Compare</a><br>
+                <a href="#">Customers</a><br>
+                <a href="#">Pricing</a><br>
+                <a href="#">Security</a><br>
+                <a href="#">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="list-unstyled">
+              <li>
+                <h6 class="mb-3">FlockOS</h6>
+                <a href="#">Browse Apps</a><br>
+                <a href="#">Build Apps</a><br>
+                <a href="#">API Documentation</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="list-unstyled">
+              <li>
+                <h6 class="mb-3">Support</h6>
+                <a href="#">Videos</a><br>
+                <a href="#">Help Center</a><br>
+                <a href="#">User Guide</a><br>
+                <a href="#">Admin Guide</a><br>
+                <a href="#">Contact Sales</a><br>
+                <a href="#">Legal</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="list-unstyled">
+              <li>
+                <h6 class="mb-3">Use cases</h6>
+                <a href="#">Engineering</a><br>
+                <a href="#">Sales</a><br>
+                <a href="#">Marketing</a><br>
+                <a href="#">Product</a><br>
+                <a href="#">Human Resource</a><br>
+                <a href="#">Customer Support</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-1">
+            <ul class="list-unstyled">
+              <li>
+                <h6 class="mb-3">Company</h6>
+                <a href="#">Careers</a><br>
+                <a href="#">News</a><br>
+                <a href="#">Business Email</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="list-unstyled">
+              <li>
+                <h6 class="mb-3">Download</h6>
+                <a href="#">Desktop App</a><br>
+                <a href="#">Mobile App</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="list-unstyled">
+              <li class="icons mb-5">
+                <a href="#" target="_blank"><i class="bi bi-linkedin fs-3 mx-2"></i></a>
+                <a href="#" target="_blank"><i class="bi bi-twitter fs-3 mx-4"></i></a>
+                <a href="#" target="_blank"><i class="bi bi-facebook fs-3 mx-2"></i></a>
+              </li>
+              <li class="end-align">
+                <a href="#">Terms and Conditions</a><br>
+                <a href="#">Privacy Policy</a><br>
+                <p>Flock FZ-LLC © 2020</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -86,7 +167,7 @@ export default {
   },
   computed: {
     showNavAndFooter() {
-      return this.$route.path !== '/sign-in';
+      return this.$route.path !== '/sign-in' && this.$route.path !== '/chat';
     }
   },
   mounted() {

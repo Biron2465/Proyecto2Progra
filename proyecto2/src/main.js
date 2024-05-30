@@ -7,6 +7,7 @@ import Testimonial from './components/TestimonialCustomer.vue'
 import MicrosoftTeams from './components/MicrosoftTeams.vue'
 import AdminControls from './components/AdminControls.vue'
 import SignInPage from './components/SignInPage.vue'
+import ChatPage from './components/ChatPage.vue'
 
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -23,6 +24,7 @@ const routes = [
     { path: '/microsoft-teams', component: MicrosoftTeams },
     { path: '/admin-controls', component: AdminControls }, 
     { path: '/sign-in', component: SignInPage }, 
+    { path: '/chat', component: ChatPage }, 
 ]
 
 const router = createRouter({
