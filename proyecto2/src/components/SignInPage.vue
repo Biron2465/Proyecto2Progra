@@ -12,10 +12,16 @@
                         <form @submit.prevent="login" class="bg-light p-4 rounded shadow-sm form">
                             <img src="../assets/SignInPage/quick-sign-up.png" alt="" class="imgSignIn py-2">
                             <h2 class="mb-3">Empieza a usar Flock</h2>
-                            <p>Introduce tu dirección de correo electrónico para continuar</p>
+                            <p v-if="!submitted || !emailExists">Introduce tu dirección de correo electrónico para
+                                continuar</p>
+                            <p v-else>Introduce tu contraseña</p>
                             <div class="mb-3">
-                                <input v-model="email" class="form-control" type="email" name="email"
-                                    placeholder="Enter your email id">
+                                <input v-if="!submitted || !emailExists" v-model="email" class="form-control"
+                                    :class="{ 'border-success': submitted && emailExists, 'border-danger': submitted && !emailExists && email }"
+                                    type="email" name="email" placeholder="Enter your email id">
+
+                                <input v-else v-model="password" class="form-control" type="password" name="password"
+                                    placeholder="Enter your password">
                             </div>
                             <button type="submit" class="btn botn btn-block">Iniciar sesión</button>
                         </form>
@@ -34,13 +40,26 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            emailExists: false,
+            submitted: false,
+            registeredEmails: { 'biron2465@gmail.com': '2465', 'dania@gmail.com': '1234' }
         };
     },
     methods: {
-        login() {
-            // Aquí puedes manejar la lógica de inicio de sesión, por ejemplo, enviar una solicitud al servidor
+        async login() {
+            this.submitted = true;
+
             console.log('Email:', this.email);
+
+            if (this.registeredEmails[this.email]) {
+                this.emailExists = true;
+                if (this.password === this.registeredEmails[this.email]) {
+                    this.$router.push('/chat');
+                }
+            } else {
+                this.emailExists = false;
+            }
         }
     }
 };
@@ -55,7 +74,7 @@ export default {
     height: 100vh;
 }
 
-.logo{
+.logo {
     width: 25%;
 }
 
@@ -73,7 +92,12 @@ export default {
     color: #ffffff;
 }
 
-a{
+.botn:hover {
+    background-color: #0abe51;
+    color: #ffffff;
+}
+
+a {
     color: #888888;
     text-decoration: underline;
     font-size: 13px;
@@ -86,9 +110,17 @@ input:focus {
     box-shadow: 0 0 5px #0abe51;
 }
 
-.form p{
+.form p {
     color: #888888;
 }
 
+.border-success {
+    border-color: #28a745 !important;
+    /* Green */
+}
 
+.border-danger {
+    border-color: #dc3545 !important;
+    /* Red */
+}
 </style>
