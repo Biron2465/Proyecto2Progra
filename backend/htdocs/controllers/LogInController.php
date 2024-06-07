@@ -13,7 +13,7 @@ class LogInController extends Controller
         if ($user && $password === $user['password']) {
             Auth::login($user, $password);
             $_SESSION['user'] = $user;
-            echo json_encode(['success' => true, 'message' => 'Login successful']);
+            echo json_encode(['success' => true, 'message' => 'Login successful', 'user' => $user]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
         }

@@ -35,6 +35,7 @@
 
 <script>
 export default {
+    props: ['user'],
     data() {
         return {
             email: '',
@@ -75,7 +76,8 @@ export default {
 
                 if (data.success) {
                     this.emailExists = true;
-                    this.$router.push('/chat');
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    this.$router.push({ name: 'Chat', params: { user: data.user } });
                 } else {
                     this.emailExists = false;
                 }

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Biron Aguilar Rodriguez</h5>
+                            <h5 class="mb-0">{{ user ? user.name : '' }}</h5>
                             <i class="bi bi-gear-fill"></i>
                         </div>
                     </div>
@@ -124,12 +124,19 @@
 
 <script>
 export default {
-    // ...
     data() {
         return {
+            user: null,
             messages: [],
             currentMessage: ''
         }
+    },
+    mounted() {
+        this.user = this.$route.params.user;
+        if (!this.user) {
+            this.user = JSON.parse(localStorage.getItem('user'));
+        }
+        console.log(this.user);
     },
     methods: {
         sendMessage() {
