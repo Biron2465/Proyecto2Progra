@@ -24,7 +24,7 @@ const routes = [
     { path: '/microsoft-teams', component: MicrosoftTeams },
     { path: '/admin-controls', component: AdminControls }, 
     { path: '/sign-in', component: SignInPage }, 
-    { path: '/chat',name: 'Chat', component: ChatPage, props: true}, 
+    { path: '/chat', component: ChatPage }, 
 ]
 
 const router = createRouter({

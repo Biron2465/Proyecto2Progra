@@ -1,26 +1,30 @@
 <template>
     <div class="container-fluid">
-        <div class="row py-2">
+        <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">{{ user ? user.name + ' ' + user.apellido1 + ' ' + user.apellido2 : '' }}</h5>
-                            <div class="dropdown">
-                                <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-gear-fill"></i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="#" @click="signOut">Sign Out</a></li>
-                                </ul>
-                            </div>
+                            <h5 class="mb-0">Biron Aguilar Rodriguez</h5>
+                            <i class="bi bi-gear-fill"></i>
                         </div>
                     </div>
                     <div class="card-body">
-                        <input type="text" class="form-control" placeholder="Start a chat (Ctrl + K)">
+                        <input type="text" class="form-control" placeholder="Establece un estado...">
+                        <div class="mt-3">
+                            <button class="btn btn-outline-primary">
+                                <i class="bi bi-chat-left"></i> Start a chat (Ctrl + K)
+                            </button>
+                        </div>
                     </div>
-                  
+                    <div class="card-header">
+                        <h5 class="mb-0">Chats anclados</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="bi bi-chat-left"></i> Biron A (me)
+                        </a>
+                    </div>
                     <div class="card-header">
                         <h5 class="mb-0">Abrir chats</h5>
                     </div>
@@ -35,7 +39,9 @@
                             <i class="bi bi-robot"></i> Flock Bot - Your Flock PRO trial en...
                         </a>
                     </div>
-
+                    <div class="card-header">
+                        <h5 class="mb-0">Chats recientes</h5>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8">
@@ -75,7 +81,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">Nombre Equipo</h5>
+                                        <h5 class="mb-0">Biron Aguilar Rodriguez</h5>
                                         <i class="bi bi-chat-left"></i>
                                     </div>
                                 </div>
@@ -118,35 +124,22 @@
 
 <script>
 export default {
+    // ...
     data() {
         return {
-            user: null,
             messages: [],
             currentMessage: ''
-        }
-    },
-    mounted() {
-        this.user = this.$route.params.user;
-        if (!this.user) {
-            this.user = JSON.parse(localStorage.getItem('user'));
         }
     },
     methods: {
         sendMessage() {
             if (this.currentMessage.trim() !== '') {
                 this.messages.push({
-                    user: this.user.name,
+                    user: 'User 1',
                     text: this.currentMessage
                 });
                 this.currentMessage = '';
             }
-        },
-        signOut() {
-            // Remove user data from localStorage
-            localStorage.removeItem('user');
-
-            // Redirect to /signIn
-            this.$router.push('/sign-in');
         }
     }
     // ...
