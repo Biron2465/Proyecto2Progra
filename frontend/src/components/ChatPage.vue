@@ -82,7 +82,7 @@
                                 <div class="card-body" style="overflow-y: auto; max-height: 290px;">
                                     <div v-for="(message, index) in messages" :key="index">
                                         <strong>{{ message.user }}:</strong>
-                                        <p>{{ message.text }}</p>
+                                        <p>{{message.text }} <small style="float: right;">{{ formatDate(message.date) }}</small></p>
                                     </div>
                                     <div class="mt-3">
                                         <input type="text" class="form-control"
@@ -156,10 +156,19 @@ export default {
                         return response.json();
                     })
                     .then(() => { // Aquí se quitó `data` ya que no se utiliza
+                        const now = new Date();
+                        // Formatear la fecha y hora
+                        const formattedDate = now.getFullYear() + '-' +
+                            ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+                            ('0' + now.getDate()).slice(-2) + ' ' +
+                            ('0' + now.getHours()).slice(-2) + ':' +
+                            ('0' + now.getMinutes()).slice(-2) + ':' +
+                            ('0' + now.getSeconds()).slice(-2);
                         // Aquí puedes agregar el mensaje a `messages` si quieres mostrarlo inmediatamente
                         this.messages.push({
                             user: this.user.name,
-                            text: this.currentMessage
+                            text: this.currentMessage,
+                            date: formattedDate
                         });
                         this.currentMessage = '';
                     })
@@ -174,6 +183,10 @@ export default {
 
             // Redirect to /signIn
             this.$router.push('/sign-in');
+        },
+        formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString();
         }
     }
     // ...
