@@ -25,9 +25,6 @@ class LogInController extends Controller
             // Leer los datos JSON del cuerpo de la solicitud
             $data = json_decode(file_get_contents('php://input'), true);
 
-            // Validar y sanitizar los datos aquí (paso omitido para simplificar)
-
-            // Extraer los datos del array
             $email = $data['email'] ?? null;
             $password = $data['password'] ?? null;
             $name = $data['name'] ?? null;
@@ -40,14 +37,11 @@ class LogInController extends Controller
             $result = $model->registerUser($email, $password, $name, $Teams_idTeam, $apellido1, $apellido2);
 
             if ($result) {
-                // Enviar una respuesta JSON de éxito
                 echo json_encode(['success' => true, 'message' => 'Usuario registrado correctamente']);
             } else {
-                // Enviar una respuesta JSON de error
                 echo json_encode(['success' => false, 'message' => 'Error al registrar el usuario. Por favor, intente de nuevo.']);
             }
         } else {
-            // Método no permitido
             http_response_code(405);
             echo json_encode(['success' => false, 'message' => 'Método no permitido']);
         }

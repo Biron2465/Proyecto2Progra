@@ -18,7 +18,6 @@ class ChatModel extends Model
     
     public function getMessages($Teams_idTeam) {
         $db = Database::getInstance()->getDb();
-        // Asumiendo que la tabla de usuarios se llama 'users' y el nombre del usuario está en la columna 'name'
         $stmt = $db->prepare("SELECT message.*, users.name AS userName FROM message 
                               INNER JOIN users ON message.Users_idUser = idUsers 
                               WHERE message.Teams_idTeam = :Teams_idTeam 

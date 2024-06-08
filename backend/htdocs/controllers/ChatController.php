@@ -4,7 +4,6 @@ class ChatController extends Controller
 {
     public function saveMessage()
     {
-        // Asegúrate de que este método solo acepte solicitudes POST
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405); // Método no permitido
             return json_encode(['error' => 'Method not allowed']);
@@ -37,7 +36,6 @@ class ChatController extends Controller
 
     public function fetchMessages()
     {
-        // Asegúrate de que este método solo acepte solicitudes GET
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             http_response_code(405); // Método no permitido
             return json_encode(['error' => 'Method not allowed']);

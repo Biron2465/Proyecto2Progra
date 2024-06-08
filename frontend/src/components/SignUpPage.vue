@@ -163,11 +163,9 @@ input:focus {
 
 .border-success {
     border-color: #28a745 !important;
-    /* Green */
 }
 
 .border-danger {
     border-color: #dc3545 !important;
-    /* Red */
 }
 </style>

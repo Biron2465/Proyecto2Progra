@@ -36,7 +36,7 @@ const router = createRouter({
 
 const app = createApp(App);
 
-// Make BootstrapVue3 available throughout your project
+
 app.use(BootstrapVue3);
 app.use(router);
 

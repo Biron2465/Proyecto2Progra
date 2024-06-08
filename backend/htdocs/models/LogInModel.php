@@ -25,9 +25,6 @@ class LogInModel extends Model
             return false; // Usuario ya existe
         }
     
-        // Encriptar contraseña
-        // $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    
         // Insertar nuevo usuario
         $stmt = $db->prepare("INSERT INTO users (email, password, name, Teams_idTeam, apellido1, apellido2) VALUES (:email, :password, :name, :Teams_idTeam, :apellido1, :apellido2)");
         $result = $stmt->execute([

@@ -86,7 +86,6 @@
                                             <strong>{{ message.userName }}</strong>
                                             <p>{{ message.data }} <small style="float: right;">{{
                                                 formatDate(message.date) }}</small></p>
-                                            <!-- Este bloque solo se muestra si newMessageText tiene contenido -->
                                             <div v-if="message.text && message.text.trim() !== ''">
                                                 <strong>{{ message.user }}</strong>
                                                 <p>{{ message.text }} <small style="float: right;">{{
@@ -146,7 +145,7 @@ export default {
     },
     methods: {
         loadMessages() {
-            fetch('http://localhost:8000/Message', { // Asegúrate de que esta URL sea correcta
+            fetch('http://localhost:8000/Message', { 
                 method: 'GET'
             })
                 .then(response => {
@@ -156,7 +155,7 @@ export default {
                     return response.json();
                 })
                 .then(data => {
-                    this.messages = data; // Asume que `data` es un array de mensajes
+                    this.messages = data; 
                     this.$nextTick(() => {
                     this.scrollToBottom();
                 });
@@ -170,7 +169,7 @@ export default {
                 // Preparar los datos a enviar
                 const messageData = {
                     message: this.currentMessage,
-                    user_id: this.user.idUsers // Asegúrate de que el objeto user tenga un campo id
+                    user_id: this.user.idUsers 
                 };
 
                 // Enviar los datos al servidor mediante una solicitud POST usando fetch
@@ -187,7 +186,7 @@ export default {
                         }
                         return response.json();
                     })
-                    .then(() => { // Aquí se quitó `data` ya que no se utiliza
+                    .then(() => { 
                         const now = new Date();
                         // Formatear la fecha y hora
                         const formattedDate = now.getFullYear() + '-' +
@@ -196,7 +195,6 @@ export default {
                             ('0' + now.getHours()).slice(-2) + ':' +
                             ('0' + now.getMinutes()).slice(-2) + ':' +
                             ('0' + now.getSeconds()).slice(-2);
-                        // Aquí puedes agregar el mensaje a `messages` si quieres mostrarlo inmediatamente
                         this.messages.push({
                             user: this.user.name,
                             text: this.currentMessage,
@@ -217,10 +215,7 @@ export default {
             }
         },
         signOut() {
-            // Remove user data from localStorage
             localStorage.removeItem('user');
-
-            // Redirect to /signIn
             this.$router.push('/sign-in');
         },
         formatDate(dateString) {
