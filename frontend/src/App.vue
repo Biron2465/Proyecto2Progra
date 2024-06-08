@@ -167,7 +167,7 @@ export default {
   },
   computed: {
     showNavAndFooter() {
-      return this.$route.path !== '/sign-in' && this.$route.path !== '/chat';
+      return this.$route.path !== '/sign-in' && this.$route.path !== '/chat' && this.$route.path !== '/sign-up';
     }
   },
   mounted() {
