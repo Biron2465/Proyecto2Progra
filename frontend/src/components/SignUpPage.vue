@@ -9,29 +9,32 @@
                                 <img src="../assets/SignInPage/Flock Logo-2.svg" alt="" class="logo" href="/">
                             </a>
                         </div>
-                        <form @submit.prevent="login" class="bg-light p-4 rounded shadow-sm form">
-                            <img src="../assets/SignInPage/quick-sign-up.png" alt="" class="imgSignIn py-2">
-                            <h2 class="mb-3">Empieza a usar Flock</h2>
-                            <p>Introduce tu datos para continuar</p>
+                        <form @submit.prevent="signUp" class="bg-light p-4 rounded shadow-sm form">
                             <div class="mb-3">
-                                <input v-model="email" class="form-control"
+                                <input v-model="name" class="form-control mb-3" type="text" name="name"
+                                    placeholder="Introduzca su nombre">
+                                <input v-model="apellido1" class="form-control mb-3" type="text" name="apellido1"
+                                    placeholder="Introduzca su primer apellido">
+                                <input v-model="apellido2" class="form-control mb-3" type="text" name="apellido2"
+                                    placeholder="Introduzca su segundo apellido">
+                                <input v-model="email" class="form-control mb-3"
                                     :class="{ 'border-success': submitted && emailExists, 'border-danger': submitted && !emailExists && email }"
-                                    type="email" name="email" placeholder="Enter your email id">
-
-                                <input v-model="password" class="form-control" type="password" name="password"
-                                    placeholder="Enter your password">
+                                    type="email" name="email" placeholder="Introduzca su correo Electrónico">
+                                <input v-model="password" class="form-control mb-3" type="password" name="password"
+                                    placeholder="Introduzca su contraseña">
+                                <input v-model="confirmPassword" class="form-control mb-3" type="password"
+                                    name="confirmPassword" placeholder="Confirme su contraseña">
                             </div>
                             <div>
                                 <div class="row">
                                     <div class="col-6 ">
-                                        <button type="submit" class="btn botn btn-block">Iniciar sesión</button>
+                                        <button type="submit" class="btn botn btn-block">Registrarse</button>
                                     </div>
                                     <div class="col-6 text-end py-2">
-                                        <a href="/sign-up">Registrarse</a>
+                                        <a href="/sign-in">Iniciar Sesión</a>
                                     </div>
                                 </div>
                             </div>
-                            
                         </form>
                         <div class="text-center mt-3">
                             <a href="#">Contactar con el servicio de asistencia</a>
@@ -45,29 +48,34 @@
 
 <script>
 export default {
-    props: ['user'],
     data() {
         return {
             email: '',
             password: '',
+            confirmPassword: '', 
             emailExists: false,
             submitted: false
         };
     },
     methods: {
-        async login() {
+        async signUp() {
             this.submitted = true;
 
+
+            if (this.password !== this.confirmPassword) {
+                alert('Las contraseñas no coinciden.');
+                return;
+            }
             // Validación de entrada
-            if (!this.email || !this.password) {
+            if (!this.email || !this.password || !this.name || !this.apellido1 || !this.apellido2) {
                 alert('Por favor, rellena todos los campos.');
                 return;
             }
 
-            console.log('Email:', this.email);
+            console.log('Registrando con el email:', this.email);
 
             try {
-                const response = await fetch('http://localhost:8000/login', {
+                const response = await fetch('http://localhost:8000/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,6 +83,9 @@ export default {
                     body: JSON.stringify({
                         email: this.email,
                         password: this.password,
+                        name: this.name,
+                        apellido1: this.apellido1,
+                        apellido2: this.apellido2,
                     }),
                 });
 
@@ -85,15 +96,14 @@ export default {
                 const data = await response.json();
 
                 if (data.success) {
-                    this.emailExists = true;
-                    localStorage.setItem('user', JSON.stringify(data.user));
-                    this.$router.push({ name: 'Chat', params: { user: data.user } });
+                    this.$router.push('/sign-in');
+                    alert('Registro exitoso. Bienvenido a Flock.');
                 } else {
-                    this.emailExists = false;
+                    alert('El registro falló. Por favor, inténtalo de nuevo.');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.');
+                alert('Hubo un error al registrar. Por favor, inténtalo de nuevo.');
             }
         }
     }
@@ -113,14 +123,9 @@ export default {
     width: 25%;
 }
 
-.imgSignIn {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 150px;
-    margin-bottom: 30px;
+form {
+    background-color: white;
 }
-
 
 .botn {
     background-color: #0abe51;
@@ -139,7 +144,8 @@ a {
     margin-top: 20px;
 }
 
-.col-6 a{
+
+.col-6 a {
     color: #0abe51;
     text-decoration: none;
     font-size: 16px;
