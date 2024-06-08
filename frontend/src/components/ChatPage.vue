@@ -5,7 +5,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">{{ user ? user.name + ' ' + user.apellido1 + ' ' + user.apellido2 : '' }}</h5>
+                            <h5 class="mb-0">{{ user ? user.name + ' ' + user.apellido1 + ' ' + user.apellido2 : '' }}
+                            </h5>
                             <div class="dropdown">
                                 <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -20,7 +21,7 @@
                     <div class="card-body">
                         <input type="text" class="form-control" placeholder="Start a chat (Ctrl + K)">
                     </div>
-                  
+
                     <div class="card-header">
                         <h5 class="mb-0">Abrir chats</h5>
                     </div>
@@ -74,8 +75,7 @@
                         <div class="col-md-12 p-3">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">Nombre Equipo</h5>
+                                    <div class="d-flex justify-content-end">
                                         <i class="bi bi-chat-left"></i>
                                     </div>
                                 </div>
@@ -130,15 +130,42 @@ export default {
         if (!this.user) {
             this.user = JSON.parse(localStorage.getItem('user'));
         }
+        console.log(this.user);
     },
     methods: {
         sendMessage() {
             if (this.currentMessage.trim() !== '') {
-                this.messages.push({
-                    user: this.user.name,
-                    text: this.currentMessage
-                });
-                this.currentMessage = '';
+                // Preparar los datos a enviar
+                const messageData = {
+                    message: this.currentMessage,
+                    user_id: this.user.idUsers // Asegúrate de que el objeto user tenga un campo id
+                };
+
+                // Enviar los datos al servidor mediante una solicitud POST usando fetch
+                fetch('http://localhost:8000/rMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(messageData),
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(() => { // Aquí se quitó `data` ya que no se utiliza
+                        // Aquí puedes agregar el mensaje a `messages` si quieres mostrarlo inmediatamente
+                        this.messages.push({
+                            user: this.user.name,
+                            text: this.currentMessage
+                        });
+                        this.currentMessage = '';
+                    })
+                    .catch(error => {
+                        console.error("Hubo un error al enviar el mensaje:", error);
+                    });
             }
         },
         signOut() {
