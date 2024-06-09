@@ -35,6 +35,7 @@
                         </form>
                         <div class="text-center mt-3">
                             <a href="#">Contactar con el servicio de asistencia</a>
+                            <h1>una simple prueba</h1>
                         </div>
                     </div>
                 </div>
