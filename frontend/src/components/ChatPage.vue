@@ -145,7 +145,7 @@ export default {
     },
     methods: {
         loadMessages() {
-            fetch('http://localhost:8000/Message', { 
+            fetch('https://proyecto2pwback.000webhostapp.com/Message', { 
                 method: 'GET'
             })
                 .then(response => {
@@ -173,7 +173,7 @@ export default {
                 };
 
                 // Enviar los datos al servidor mediante una solicitud POST usando fetch
-                fetch('http://localhost:8000/rMessage', {
+                fetch('https://proyecto2pwback.000webhostapp.com/rMessage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
