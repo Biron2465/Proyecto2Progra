@@ -94,6 +94,7 @@ export default {
                     this.$router.push({ name: 'Chat', params: { user: data.user } });
                 } else {
                     this.emailExists = false;
+                    alert(data.message || 'Credenciales inválidas. Inténtalo de nuevo.');
                 }
             } catch (error) {
                 console.error('Error:', error);
