@@ -82,7 +82,11 @@ export default {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
+                console.log('Response:', response);
+
                 const data = await response.json();
+
+                console.log('Response data:', data);
 
                 if (data.success) {
                     this.emailExists = true;
