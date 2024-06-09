@@ -67,7 +67,7 @@ export default {
             console.log('Email:', this.email);
 
             try {
-                const response = await fetch('http://localhost:8000/login', {
+                const response = await fetch('https://proyecto2pwback.000webhostapp.com/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
