@@ -75,7 +75,7 @@ export default {
             console.log('Registrando con el email:', this.email);
 
             try {
-                const response = await fetch('https://proyecto2pwback.000webhostapp.com/register', {
+                const response = await fetch('http://localhost:8000/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
